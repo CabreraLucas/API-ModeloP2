@@ -1,4 +1,4 @@
-PUT https://8080-marcoweb-j2projetomodel-hfpuplkv68p.ws-us110.gitpod.io/categorias/1
+PUT https://8080-cabreraluca-apimodelop2-ezpwl47psow.ws-us110.gitpod.io/categorias/1
 Content-Type: application/json
 
 {
