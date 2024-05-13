@@ -22,10 +22,10 @@ public class AppUserDetailsService implements UserDetailsService {
         }
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-        .username(usuario.getNomeDeUsuario())
-        .password(usuario.getSenha())
-        .roles("USER")
-        .build();
+            .username(usuario.getNomeDeUsuario())
+            .password(usuario.getSenha())
+            .roles("USER")
+            .build();
     
     return userDetails;
     }
