@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -15,10 +16,14 @@ import application.model.Usuario;
 
 @Service
 public class TokenService {
+
+    @Value("${api.security.token.key}")
+    private String tokenKey;
     
     public String generateToken(Usuario usuario){
+        System.out.println(tokenKey);
         try {
-            Algorithm algorithm = Algorithm.HMAC256("teste");
+            Algorithm algorithm = Algorithm.HMAC256(tokenKey);
             return JWT.create()
             .withIssuer("API Quizzes")
             .withSubject(usuario.getNomeDeUsuario())
@@ -31,7 +36,7 @@ public class TokenService {
 
     public String getSubject(String token){
         try {
-            Algorithm algorithm = Algorithm.HMAC256("teste");
+            Algorithm algorithm = Algorithm.HMAC256(tokenKey);
             return JWT.require(algorithm)
             .withIssuer("API Quizzes")
             .build()
