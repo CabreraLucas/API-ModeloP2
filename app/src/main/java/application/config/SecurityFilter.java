@@ -1,7 +1,6 @@
 package application.config;
 
 import java.io.IOException;
-import java.rmi.ServerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +10,7 @@ import application.service.AppUserDetailsService;
 import application.service.TokenService;
 
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -26,7 +26,7 @@ public class SecurityFilter extends OncePerRequestFilter{
     protected void doFilterInternal(
         HttpServletRequest request, 
         HttpServletResponse response, 
-        FilterChain filterChain) throws ServerException, IOException{
+        FilterChain filterChain) throws ServletException, IOException{
             
         String token = getToken(request);
 
