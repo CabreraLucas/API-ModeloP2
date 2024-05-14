@@ -1,12 +1,10 @@
 @baseUrl = https://8080-cabreraluca-apimodelop2-sx76ccbycw7.ws-us110.gitpod.io
 
 ###
-GET {{baseUrl}}/categorias
-
-###
-POST {{baseUrl}}/categorias
+POST {{baseUrl}}/auth
 Content-Type: application/json
 
 {
-    "nome": "Conhecimentos Gerais"
+    "nomeDeUsuario": "Lucas",
+    "senha": "123456"
 }
