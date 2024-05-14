@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import application.model.Usuario;
 
@@ -27,6 +28,19 @@ public class TokenService {
             throw new RuntimeException("Erro ao gerar JWT");
         }
     } 
+
+    public String getSubject(String token){
+        try {
+            Algorithm algorithm = Algorithm.HMAC256("teste");
+            return JWT.require(algorithm)
+            .withIssuer("API Quizzes")
+            .build()
+            .verify(token)
+            .getSubject();                               
+        } catch (JWTVerificationException exception) {
+            throw new RuntimeException("Token Inválido");
+        }
+    }
 
     private Instant expirationDate(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
