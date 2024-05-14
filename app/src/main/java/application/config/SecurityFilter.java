@@ -3,6 +3,9 @@ package application.config;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,7 +23,7 @@ public class SecurityFilter extends OncePerRequestFilter{
     private TokenService tokenService;
 
     @Autowired
-    private AppUserDetailsService appUserDetailsService;
+    private AppUserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(
@@ -31,7 +34,13 @@ public class SecurityFilter extends OncePerRequestFilter{
         String token = getToken(request);
 
         if(token != null){
-            
+            String subject = tokenService.getSubject(token);
+            UserDetails usuario = userDetailsService.loadUserByUsername(subject);
+
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                usuario, null, usuario.getAuthorities());
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         //System.out.println(token);
