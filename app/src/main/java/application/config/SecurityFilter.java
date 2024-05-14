@@ -30,6 +30,8 @@ public class SecurityFilter extends OncePerRequestFilter{
             
         String token = getToken(request);
 
+        System.out.println(token);
+
         filterChain.doFilter(request, response);
 
     }
