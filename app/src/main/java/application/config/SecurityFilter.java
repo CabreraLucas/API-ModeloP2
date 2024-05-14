@@ -33,6 +33,8 @@ public class SecurityFilter extends OncePerRequestFilter{
             
         String token = getToken(request);
 
+        System.out.println(token);
+
         if(token != null){
             String subject = tokenService.getSubject(token);
             UserDetails usuario = userDetailsService.loadUserByUsername(subject);
