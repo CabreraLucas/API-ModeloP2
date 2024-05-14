@@ -30,7 +30,11 @@ public class SecurityFilter extends OncePerRequestFilter{
             
         String token = getToken(request);
 
-        System.out.println(token);
+        if(token != null){
+            
+        }
+
+        //System.out.println(token);
 
         filterChain.doFilter(request, response);
 
@@ -39,6 +43,10 @@ public class SecurityFilter extends OncePerRequestFilter{
     private String getToken(HttpServletRequest request){
         String authHeader = request.getHeader("Authorization");
 
-        return authHeader;
+        if(authHeader != null){
+            return authHeader.replace("Bearer", "");
+        }
+
+        return null;
     }
 }
