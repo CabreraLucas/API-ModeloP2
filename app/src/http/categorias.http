@@ -2,6 +2,7 @@
 
 ###
 GET {{baseUrl}}/categorias
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBUEkgUXVpenplcyIsInN1YiI6Ikx1Y2FzIiwiZXhwIjoxNzE1NzM0MTQ3fQ.i4CKJgF0f7KYimNVaYDYQCBPrzG6MHeOPIFbvT_vrtQ
 
 ###
 POST {{baseUrl}}/categorias
