@@ -8,3 +8,5 @@ Content-Type: application/json
     "nomeDeUsuario": "Lucas",
     "senha": "123456"
 }
+
+//docker exec -it mysql mysql -uroot -p
